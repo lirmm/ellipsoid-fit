@@ -6,14 +6,20 @@ include(Package_Definition NO_POLICY_SCOPE)
 PROJECT(ellipsoid-fit)
 
 declare_PID_Package(
-			AUTHOR      idhuser
-			YEAR        2018
-			LICENSE     CeCILL
-			DESCRIPTION TODO: input a short description of package ellipsoid-fit utility here
+			AUTHOR 			Benjamin Navarro
+			INSTITUTION		LIRMM
+			MAIL			navarro@lirmm.fr
+			ADDRESS			git@github.com:BenjaminNavarro/ellipsoid-fit.git
+			PUBLIC_ADDRESS	https://github.com/BenjaminNavarro/ellipsoid-fit.git
+			YEAR 			2018
+			LICENSE 		GNULGPL
+			README			README.md
+			DESCRIPTION 	"Ellipsoid fitting in C++ using Eigen. Widely inspired by https://www.mathworks.com/matlabcentral/fileexchange/24693-ellipsoid-fit"
+			README			instructions.md
 		)
 
 set_PID_Package_Version(0 1 0)
 
-#now finding packages
+declare_PID_Package_Dependency(PACKAGE eigen EXTERNAL VERSION 3.3.4 VERSION 3.2.9)
 
 build_PID_Package()
