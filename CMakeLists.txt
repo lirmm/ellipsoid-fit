@@ -12,7 +12,7 @@ declare_PID_Package(
 			DESCRIPTION TODO: input a short description of package ellipsoid-fit utility here
 		)
 
-set_PID_Package_Version(0 0)
+set_PID_Package_Version(0 1 0)
 
 #now finding packages
 
