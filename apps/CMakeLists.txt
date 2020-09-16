@@ -1,10 +1,6 @@
-declare_PID_Component(
-    EXAMPLE_APPLICATION
+PID_Component(
+    EXAMPLE
     NAME fitting-example
     DIRECTORY fitting_example
-)
-
-declare_PID_Component_Dependency(
-    COMPONENT fitting-example
-    NATIVE ellipsoid-fit
+    DEPEND ellipsoid-fit/ellipsoid-fit
 )

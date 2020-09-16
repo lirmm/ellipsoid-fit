@@ -1,3 +1,12 @@
 *~
 *.old
+CMakeFiles
+cmake_install.cmake
+Makefile
+CMakeCache.txt
 .atom-dbg.cson
+compile_commands.json
+.ccls-cache
+.vscode
+.clangd
+package.json

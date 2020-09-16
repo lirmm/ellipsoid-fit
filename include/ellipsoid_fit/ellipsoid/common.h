@@ -5,10 +5,10 @@
 namespace ellipsoid {
 
 struct Parameters {
-	Eigen::Vector3d center;
-	Eigen::Vector3d radii;
+    Eigen::Vector3d center;
+    Eigen::Vector3d radii;
 
-	void print();
+    void print();
 };
 
-}
+} // namespace ellipsoid
