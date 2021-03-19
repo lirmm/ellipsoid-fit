@@ -17,7 +17,7 @@ PID_Package(
 			DESCRIPTION 	"Ellipsoid fitting in C++ using Eigen. Widely inspired by https://www.mathworks.com/matlabcentral/fileexchange/24693-ellipsoid-fit"
 			README			instructions.md
 			CODE_STYLE		pid11
-			VERSION 		1.0.2
+			VERSION 		1.1.0
 		)
 
 PID_Dependency(eigen)
