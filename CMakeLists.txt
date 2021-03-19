@@ -9,15 +9,15 @@ PID_Package(
 			AUTHOR 			Benjamin Navarro
 			INSTITUTION		LIRMM
 			MAIL			navarro@lirmm.fr
-			ADDRESS			git@github.com:BenjaminNavarro/ellipsoid-fit.git
-			PUBLIC_ADDRESS	https://github.com/BenjaminNavarro/ellipsoid-fit.git
-			YEAR 			2018-2020
+			ADDRESS			git@gite.lirmm.fr:rpc/math/ellipsoid-fit.git
+			PUBLIC_ADDRESS	https://gite.lirmm.fr/rpc/math/ellipsoid-fit.git
+			YEAR 			2018-2021
 			LICENSE 		GNULGPL
 			README			README.md
 			DESCRIPTION 	"Ellipsoid fitting in C++ using Eigen. Widely inspired by https://www.mathworks.com/matlabcentral/fileexchange/24693-ellipsoid-fit"
 			README			instructions.md
 			CODE_STYLE		pid11
-			VERSION 		1.1.0
+			VERSION 		1.0.2
 		)
 
 PID_Dependency(eigen)

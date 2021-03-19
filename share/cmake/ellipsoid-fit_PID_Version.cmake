@@ -1,1 +1,1 @@
-set(ellipsoid-fit_PID_VERSION 3 CACHE INTERNAL "")
+set(ellipsoid-fit_PID_VERSION 4 CACHE INTERNAL "")

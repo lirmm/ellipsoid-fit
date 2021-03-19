@@ -4,9 +4,14 @@ CMakeFiles
 cmake_install.cmake
 Makefile
 CMakeCache.txt
+binaries/
+pid
+pid.bat
 .atom-dbg.cson
 compile_commands.json
 .ccls-cache
 .vscode
 .clangd
 package.json
+/compile_commands.json
+.cache
