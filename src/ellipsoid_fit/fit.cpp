@@ -172,6 +172,8 @@ Parameters fit(const Eigen::Matrix<double, Eigen::Dynamic, 3>& data,
         }
     }
 
+    params.v = v;
+
     return params;
 }
 
