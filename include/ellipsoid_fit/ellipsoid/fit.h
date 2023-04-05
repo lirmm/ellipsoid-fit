@@ -2,6 +2,7 @@
 
 #include <ellipsoid/common.h>
 #include <Eigen/Dense>
+#include <functional>
 
 namespace ellipsoid {
 
@@ -23,5 +24,9 @@ enum class EllipsoidType {
  */
 Parameters fit(const Eigen::Matrix<double, Eigen::Dynamic, 3>& data,
                EllipsoidType type = EllipsoidType::Arbitrary);
+
+Parameters fit(const Eigen::Matrix<double, Eigen::Dynamic, 3>& data,
+    std::function<void(const Eigen::Matrix<double, 10, 1>&)> getAlgebraicForm,
+    EllipsoidType type = EllipsoidType::Arbitrary);
 
 } // namespace ellipsoid
