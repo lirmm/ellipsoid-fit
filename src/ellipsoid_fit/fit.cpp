@@ -4,14 +4,12 @@
 namespace ellipsoid {
 
 Parameters fit(const Eigen::Matrix<double, Eigen::Dynamic, 3>& data,
-                EllipsoidType type)
-{
-    return fit(data, [](const Eigen::Matrix<double, 10, 1>&) {}, type);
+                EllipsoidType type) {
+    return fit(data, nullptr, type);
 }
 
 Parameters fit(const Eigen::Matrix<double, Eigen::Dynamic, 3>& data,
-               std::function<void(const Eigen::Matrix<double, 10, 1>&)> getAlgebraicForm,
-               EllipsoidType type) {
+                Eigen::Matrix<double, 10, 1>* coefficients, EllipsoidType type) {
     Parameters params;
 
     const auto& x = data.col(0);
@@ -179,8 +177,10 @@ Parameters fit(const Eigen::Matrix<double, Eigen::Dynamic, 3>& data,
         }
     }
 
-    // a function pointer to get algebraic form
-    getAlgebraicForm(v);
+    // get the coefficients of the algebraic form
+    if (coefficients != nullptr) {
+        *coefficients = v;
+    }
 
     return params;
 }
