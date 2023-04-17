@@ -4,7 +4,12 @@
 namespace ellipsoid {
 
 Parameters fit(const Eigen::Matrix<double, Eigen::Dynamic, 3>& data,
-               EllipsoidType type) {
+                EllipsoidType type) {
+    return fit(data, nullptr, type);
+}
+
+Parameters fit(const Eigen::Matrix<double, Eigen::Dynamic, 3>& data,
+                Eigen::Matrix<double, 10, 1>* coefficients, EllipsoidType type) {
     Parameters params;
 
     const auto& x = data.col(0);
@@ -170,6 +175,11 @@ Parameters fit(const Eigen::Matrix<double, Eigen::Dynamic, 3>& data,
         if (solver.eigenvalues()(i).real() < 0.) {
             params.radii(i) = -params.radii(i);
         }
+    }
+
+    // get the coefficients of the algebraic form
+    if (coefficients != nullptr) {
+        *coefficients = v;
     }
 
     return params;
