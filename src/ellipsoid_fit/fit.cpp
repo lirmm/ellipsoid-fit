@@ -170,7 +170,12 @@ Parameters fit(const Eigen::Matrix<double, Eigen::Dynamic, 3>& data,
     auto R = (T * A * T.transpose()).eval();
     // solve the eigenproblem
     Eigen::EigenSolver<Eigen::Matrix3d> solver(R.block<3, 3>(0, 0) / -R(3, 3));
-    params.radii = solver.eigenvalues().cwiseAbs().cwiseInverse().cwiseSqrt();
+    Eigen::Vector3d eval = solver.eigenvalues().real();
+    Eigen::Matrix3d evec_column = solver.eigenvectors().real();
+    // determine the configuration with the minimum angle of rotation from ref. frame
+    minRotFinder::find_min_rotation(eval, evec_column);
+    params.radii = eval.cwiseAbs().cwiseInverse().cwiseSqrt();
+
     for (size_t i = 0; i < 3; ++i) {
         if (solver.eigenvalues()(i).real() < 0.) {
             params.radii(i) = -params.radii(i);
