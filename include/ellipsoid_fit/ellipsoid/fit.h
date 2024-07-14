@@ -1,6 +1,7 @@
 #pragma once
 
 #include <ellipsoid/common.h>
+#include <ellipsoid/minRotFinder.h>
 #include <Eigen/Dense>
 
 namespace ellipsoid {
@@ -28,7 +29,7 @@ Parameters fit(const Eigen::Matrix<double, Eigen::Dynamic, 3>& data,
  * Fit an ellipsoid on the given data
  * @param  data 3xN matrix with the cartesian coordinates to fit the ellipsoid
  * on
- * @param  coefficients pointer storing the 10 coefficents of the fitted ellipsoid 
+ * @param[out]  coefficients pointer storing the 10 coefficents of the fitted ellipsoid 
  * in algebraic form, \f$c=\f$ coefficients, \f{equation}{
  * c_0x^2 + c_1y^2 + c_2z^2 
  * + 2c_3xy + 2c_4xz + 2c_5yz 
