@@ -7,36 +7,31 @@ void minRotFinder::find_min_rotation(Eigen::Vector3d& eval, Eigen::Matrix3d& eve
     std::vector<Eigen::Matrix3d> evec_column_set; //for eigenvectors stored in column
 
     // All possible placements of eigenvalues and eigenvectors
-    std::array<std::array<int, 3>, 6> order = { {
+    const std::array<const std::array<const int, 3>, 6> order_set = { {
         {0, 1, 2}, {0, 2, 1},
         {1, 0, 2}, {1, 2, 0},
         {2, 0, 1}, {2, 1, 0}
     } };
     // All possible signs assigned to eigenvectors
-    std::array<std::array<int, 2>, 4> sign = { {
-        {0, 0}, {0, 1},
-        {1, 0}, {1, 1}
+    const std::array<const std::array<const int, 3>, 4> sign_set = { {
+        {0, 0, 0}, {0, 1, 0},
+        {1, 0, 0}, {1, 1, 0}
     } };
 
     Eigen::Vector3d temp_vector;
     Eigen::Matrix3d temp_matrix;
 
-    const unsigned int dim = 3;
-    const unsigned int dim_minus_1 = dim - 1;
-
     // Find all possible configurations of eigenvectors with their respective eigenvalues
-    for (int i = 0; i < order.size(); i++) {
-        for (int j = 0; j < sign.size(); j++) {
-            for (int k = 0; k < dim_minus_1; k++) {
-                temp_matrix.col(k) = std::pow(-1, sign[j][k]) * evec_column.col(order[i][k]);
-                temp_vector[k] = eval[order[i][k]];
+    for (const auto& order : order_set) {
+        for (const auto& sign : sign_set) {            
+            for (int i = 0; i < 3; i++) {
+                temp_matrix.col(i) = std::pow(-1, sign[i]) * evec_column.col(order[i]);
+                temp_vector[i] = eval[order[i]];
             }
-            temp_matrix.col(dim_minus_1) = evec_column.col(order[i][dim_minus_1]);
             // Ensure the determinant always positive to preserve orientation
             if (temp_matrix.determinant() < 0) {
-                temp_matrix.col(dim_minus_1) = -temp_matrix.col(dim_minus_1);
+                temp_matrix.col(2) = -temp_matrix.col(2);
             }
-            temp_vector[dim_minus_1] = eval[order[i][dim - 1]];
 
             evec_column_set.push_back(temp_matrix);
             eval_set.push_back(temp_vector);
