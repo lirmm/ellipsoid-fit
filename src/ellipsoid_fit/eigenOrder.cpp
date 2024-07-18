@@ -1,6 +1,6 @@
-#include <ellipsoid/minRotFinder.h>
+#include <ellipsoid/eigenOrder.h>
 
-void minRotFinder::find_min_rotation(Eigen::Vector3d& eval, Eigen::Matrix3d& evec_column)
+void eigenOrder::leastRotationAngle(Eigen::Vector3d& eval, Eigen::Matrix3d& evec_column)
 {
     // Store all possible configurations
     std::vector<Eigen::Vector3d> eval_set;	// for eigenvalues

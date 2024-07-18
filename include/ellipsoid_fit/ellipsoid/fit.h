@@ -1,7 +1,7 @@
 #pragma once
 
 #include <ellipsoid/common.h>
-#include <ellipsoid/minRotFinder.h>
+#include <ellipsoid/eigenOrder.h>
 #include <Eigen/Dense>
 
 namespace ellipsoid {
