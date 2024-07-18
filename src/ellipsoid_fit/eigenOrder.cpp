@@ -26,7 +26,7 @@ void eigenOrder::leastRotationAngle(Eigen::Vector3d& eval, Eigen::Matrix3d& evec
         for (const auto& sign : sign_set) {            
             for (int i = 0; i < 3; i++) {
                 temp_matrix.col(i) = std::pow(-1, sign[i]) * evec_column.col(order[i]);
-                temp_vector[i] = eval[order[i]];
+                temp_vector(i) = eval(order[i]);
             }
             // Ensure the determinant always positive to preserve orientation
             if (temp_matrix.determinant() < 0) {
