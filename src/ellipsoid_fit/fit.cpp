@@ -177,7 +177,7 @@ Parameters fit(const Eigen::Matrix<double, Eigen::Dynamic, 3>& data,
     params.radii = eval.cwiseAbs().cwiseInverse().cwiseSqrt();
 
     for (size_t i = 0; i < 3; ++i) {
-        if (solver.eigenvalues()(i).real() < 0.) {
+        if (eval(i) < 0.) {
             params.radii(i) = -params.radii(i);
         }
     }
