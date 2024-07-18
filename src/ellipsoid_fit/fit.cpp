@@ -173,7 +173,7 @@ Parameters fit(const Eigen::Matrix<double, Eigen::Dynamic, 3>& data,
     Eigen::Vector3d eval = solver.eigenvalues().real();
     Eigen::Matrix3d evec_column = solver.eigenvectors().real();
     // determine the configuration with the minimum angle of rotation from ref. frame
-    minRotFinder::find_min_rotation(eval, evec_column);
+    eigenOrder::leastRotationAngle(eval, evec_column);
     params.radii = eval.cwiseAbs().cwiseInverse().cwiseSqrt();
 
     for (size_t i = 0; i < 3; ++i) {

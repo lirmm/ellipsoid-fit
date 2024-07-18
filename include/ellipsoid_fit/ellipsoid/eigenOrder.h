@@ -7,7 +7,7 @@
 #include <Eigen/Dense>
 #include <Eigen/Geometry>
 
-namespace minRotFinder {
+namespace eigenOrder {
 
 /**
  * @brief Rearrange the eigenvectors with their respective eigenvalues for the smallest 
@@ -30,6 +30,6 @@ namespace minRotFinder {
  * in `eval`.
  * 
  */
-void find_min_rotation(Eigen::Vector3d& eval, Eigen::Matrix3d& evec_column);
+void leastRotationAngle(Eigen::Vector3d& eval, Eigen::Matrix3d& evec_column);
 
 } // namespace minRotFinder
