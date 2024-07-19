@@ -11,6 +11,8 @@ PID_Package(
 			MAIL			navarro@lirmm.fr
 			ADDRESS			git@gite.lirmm.fr:rpc/math/ellipsoid-fit.git
 			PUBLIC_ADDRESS	https://gite.lirmm.fr/rpc/math/ellipsoid-fit.git
+			ADDRESS git@github.com:BenjaminNavarro/ellipsoid-fit.git
+
 			YEAR 			2018-2021
 			LICENSE 		GNULGPL
 			README			README.md
