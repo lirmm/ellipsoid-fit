@@ -52,7 +52,7 @@ int main(int argc, char const* argv[]) {
         } else if (type_name == "sphere") {
             identified_parameters =
                 ellipsoid::fit(points, ellipsoid::EllipsoidType::Sphere);
-        } else {
+        } else if (type_name == "arbitary") {
             identified_parameters =
                 ellipsoid::fit(points, ellipsoid::EllipsoidType::Arbitrary);
         }
