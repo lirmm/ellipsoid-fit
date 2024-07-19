@@ -52,6 +52,9 @@ int main(int argc, char const* argv[]) {
         } else if (type_name == "sphere") {
             identified_parameters =
                 ellipsoid::fit(points, ellipsoid::EllipsoidType::Sphere);
+        } else {
+            identified_parameters =
+                ellipsoid::fit(points);
         }
 
         check_vector3d(identified_parameters.center, parameters.center,

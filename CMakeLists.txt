@@ -20,6 +20,8 @@ PID_Package(
 			VERSION 		1.1.0
 		)
 
+PID_Author(AUTHOR CK-Explorer)
+
 PID_Dependency(eigen)
 
 build_PID_Package()
