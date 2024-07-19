@@ -13,14 +13,35 @@ can be used as a rotation matrix to rotate the fitted ellipsoid to the nearest n
 
 From the C++ function above, suppose `*eval_p` contains $[e_0\ e_1\ e_2]^T$, and let its diagonal matrix `eval_p->asDiagonal()` denoted as $E$. Meanwhile, let `evec_column_p->transpose()` be denoted as $R$. 
 
-Consider the inputs be $d_{in}=[x_{in}\ y_{in}\ z_{in}]^T$, while the rotated outputs be $d_{out}=[x_{out}\ y_{out}\ z_{out}]^T$. The relationship between these vectors is given by:
+Consider the inputs be $d_{in}=[x_{in}\ y_{in}\ z_{in}]^T$, while the outputs produced from rotating the inputs be $d_{out}=[x_{out}\ y_{out}\ z_{out}]^T$. The relationship between these vectors is given by:
 $$
 e_0\ x_{out}^2+e_1\ y_{out}^2+e_2\ z_{out}^2 = d_{in}^T R^T E\ R\ d_{in}
 $$
-The rotation from $d_{in}$ to $d_{out}$ is performed as follows:
-$$
-d_{out} = R\ d_{in}
-$$
+Hence, the rotation from $d_{in}$ to $d_{out}$ is performed using
+$d_{out} = R\ d_{in}$ or  
+```cpp
+...
+Eigen::Vector3d d_in; // Inputs
+Eigen::Matrix3d R = evec_column_p->transpose();
+
+// Perform the multiplication d_out = R * d_in
+Eigen::Vector3d d_out = R * d_in;
+...
+```
+
+Also, mapping from ellipsoid to the sphere can be done using
+$d_{out} = \sqrt{E} R\ d_{in}$ or 
+
+```cpp
+...
+Eigen::Vector3d d_in; // Inputs
+Eigen::Matrix3d R = evec_column_p->transpose();
+Eigen::Matrix3d sqrt_E = eval_p->cwiseSqrt().asDiagonal();
+
+// Perform sphere mapping d_out = E^(0.5) * R * d_in
+Eigen::Vector3d d_out = sqrt_E * R * d_in;
+...
+```
 </details>
 
 ## Warning
