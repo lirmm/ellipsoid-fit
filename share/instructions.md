@@ -14,9 +14,9 @@ can be used as a rotation matrix to rotate the fitted ellipsoid to the nearest n
 From the C++ function above, suppose `*eval_p` contains $[e_0\ e_1\ e_2]^T$, and let its diagonal matrix `eval_p->asDiagonal()` denoted as $E$. Meanwhile, let `evec_column_p->transpose()` be denoted as $R$. 
 
 Consider the inputs be $d_{in}=[x_{in}\ y_{in}\ z_{in}]^T$, while the outputs produced from rotating the inputs be $d_{out}=[x_{out}\ y_{out}\ z_{out}]^T$. The relationship between these vectors is given by:
-$$
-e_0\ x_{out}^2+e_1\ y_{out}^2+e_2\ z_{out}^2 = d_{in}^T R^T E\ R\ d_{in}
-$$
+
+$$e_0\ x_{out}^2+e_1\ y_{out}^2+e_2\ z_{out}^2 = d_{in}^T R^T E\ R\ d_{in}$$
+
 Hence, the rotation from $d_{in}$ to $d_{out}$ is performed using
 $d_{out} = R\ d_{in}$ or  
 ```cpp
