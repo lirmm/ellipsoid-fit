@@ -54,7 +54,7 @@ int main(int argc, char const* argv[]) {
                 ellipsoid::fit(points, ellipsoid::EllipsoidType::Sphere);
         } else {
             identified_parameters =
-                ellipsoid::fit(points);
+                ellipsoid::fit(points, ellipsoid::EllipsoidType::Arbitrary);
         }
 
         check_vector3d(identified_parameters.center, parameters.center,
