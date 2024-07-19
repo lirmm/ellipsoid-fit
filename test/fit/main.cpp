@@ -30,7 +30,7 @@ int main(int argc, char const* argv[]) {
             Eigen::Vector3d rel_error =
                 (expected - identified).cwiseQuotient(expected).cwiseAbs();
             if ((rel_error(0) > tol) or (rel_error(1) > tol) or
-                (rel_error(2) > tol)) {
+                (rel_error(2) > tol) or (rel_error.array().isNaN().any())) {
                 std::stringstream ss;
                 ss << "Wrong ellipsoid " << name << ": "
                    << identified.transpose() << ", expecting "

@@ -174,13 +174,8 @@ Parameters fit(const Eigen::Matrix<double, Eigen::Dynamic, 3>& data,
     Eigen::Matrix3d evec_column = solver.eigenvectors().real();
     // determine the configuration with the minimum angle of rotation from ref. frame
     eigenOrder::leastRotationAngle(eval, evec_column);
-    params.radii = eval.cwiseAbs().cwiseInverse().cwiseSqrt();
-
-    for (size_t i = 0; i < 3; ++i) {
-        if (eval(i) < 0.) {
-            params.radii(i) = -params.radii(i);
-        }
-    }
+    // compute the ellipsoid axes' radius
+    params.radii = eval.cwiseInverse().cwiseSqrt(); // output NaN for hyperboloid surface
 
     // get the coefficients of the algebraic form
     if (coefficients != nullptr) {
