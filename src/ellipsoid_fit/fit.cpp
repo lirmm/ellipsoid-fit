@@ -5,11 +5,25 @@ namespace ellipsoid {
 
 Parameters fit(const Eigen::Matrix<double, Eigen::Dynamic, 3>& data,
                 EllipsoidType type) {
-    return fit(data, nullptr, type);
+    return fit(data, nullptr, nullptr, nullptr, type);
 }
 
 Parameters fit(const Eigen::Matrix<double, Eigen::Dynamic, 3>& data,
-                Eigen::Matrix<double, 10, 1>* coefficients, EllipsoidType type) {
+                Eigen::Matrix<double, 10, 1>* coefficients_p, 
+                EllipsoidType type) {
+    return fit(data, coefficients_p, nullptr, nullptr, type);
+}
+
+Parameters fit(const Eigen::Matrix<double, Eigen::Dynamic, 3>& data,
+                Eigen::Vector3d* eval_p, Eigen::Matrix3d* evec_column_p,
+                EllipsoidType type) {
+    return fit(data, nullptr, eval_p, evec_column_p, type);
+}
+
+Parameters fit(const Eigen::Matrix<double, Eigen::Dynamic, 3>& data,
+                Eigen::Matrix<double, 10, 1>* coefficients_p, 
+                Eigen::Vector3d* eval_p, Eigen::Matrix3d* evec_column_p,
+                EllipsoidType type) {
     Parameters params;
 
     const auto& x = data.col(0);
@@ -178,8 +192,18 @@ Parameters fit(const Eigen::Matrix<double, Eigen::Dynamic, 3>& data,
     params.radii = eval.cwiseInverse().cwiseSqrt(); // output NaN for hyperboloid surface
 
     // get the coefficients of the algebraic form
-    if (coefficients != nullptr) {
-        *coefficients = v;
+    if (coefficients_p != nullptr) {
+        *coefficients_p = v;
+    }
+
+    // get the arranged eigenvalues
+    if (eval_p != nullptr) {
+        *eval_p = eval;
+    }
+
+    // get the arranged eigenvectors
+    if (evec_column_p != nullptr) {
+        *evec_column_p = evec_column;
     }
 
     return params;
