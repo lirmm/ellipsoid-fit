@@ -61,7 +61,7 @@ If any of the radii results in a 'NaN' value, it indicates that the fitted surfa
 Possible causes include:
 
 1. Incomplete coverage of the surface points in the input data.
-2. Numerical errors during the least square minimization in the fitting process.
+2. Numerical errors during the least square minimization in the fitting process. (A fix is required in the future)
 
 Package Overview
 ================
