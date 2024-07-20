@@ -37,8 +37,8 @@ Eigen::Vector3d d_out = R * d_in;
 ...
 ```
 
-Also, mapping from ellipsoid to the sphere can be done using
-$d_{out} = \sqrt{E} R\ d_{in}$ or 
+Additionally, the transformation from the fitted ellipsoid to a unit sphere can be achieved using 
+$d_{out} = \sqrt{E} R\ d_{in}$, or
 
 ```cpp
 ...
@@ -50,10 +50,18 @@ Eigen::Matrix3d sqrt_E = eval_p->cwiseSqrt().asDiagonal();
 Eigen::Vector3d d_out = sqrt_E * R * d_in;
 ...
 ```
+ This process involves first rotating the inputs, followed by scaling them.
 </details>
 
+
 ## Warning
-If any of the radii results in a 'NaN' value, it indicates that the fitted surface is not an ellipsoid but a hyperboloid.
+
+If any of the radii results in a 'NaN' value, it indicates that the fitted surface is a hyperboloid, not an ellipsoid.
+
+Possible causes include:
+
+1. Incomplete coverage of the surface points in the input data.
+2. Numerical errors during the least square minimization in the fitting process.
 
 Package Overview
 ================
