@@ -7,6 +7,7 @@
 int main(int argc, char const* argv[]) {
     auto type_name = std::string(argv[1]);
     const double tol = 1e-2;
+    std::srand(time(nullptr));
 
     for (size_t i = 0; i < 1000; ++i) {
         ellipsoid::Parameters parameters;
@@ -30,7 +31,7 @@ int main(int argc, char const* argv[]) {
             Eigen::Vector3d rel_error =
                 (expected - identified).cwiseQuotient(expected).cwiseAbs();
             if ((rel_error(0) > tol) or (rel_error(1) > tol) or
-                (rel_error(2) > tol)) {
+                (rel_error(2) > tol) or (rel_error.array().isNaN().any())) {
                 std::stringstream ss;
                 ss << "Wrong ellipsoid " << name << ": "
                    << identified.transpose() << ", expecting "
@@ -52,6 +53,9 @@ int main(int argc, char const* argv[]) {
         } else if (type_name == "sphere") {
             identified_parameters =
                 ellipsoid::fit(points, ellipsoid::EllipsoidType::Sphere);
+        } else if (type_name == "arbitary") {
+            identified_parameters =
+                ellipsoid::fit(points, ellipsoid::EllipsoidType::Arbitrary);
         }
 
         check_vector3d(identified_parameters.center, parameters.center,

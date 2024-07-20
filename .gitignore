@@ -5,6 +5,8 @@ cmake_install.cmake
 Makefile
 CMakeCache.txt
 binaries/
+/pid
+/pid.bat
 pid
 pid.bat
 .atom-dbg.cson

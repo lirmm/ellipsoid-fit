@@ -3,7 +3,7 @@
 #include <iostream>
 
 int main() {
-
+    // An example of incomplete coverage of the surface points in the input data.
     Eigen::Matrix<double, 100, 3> points;
     double a = 3, b = 1, c = 2;
     auto s = Eigen::Matrix<double, 100, 1>::LinSpaced(0, M_PI);
@@ -31,6 +31,7 @@ int main() {
     auto identified_parameters =
         ellipsoid::fit(points, ellipsoid::EllipsoidType::Arbitrary);
 
+    // Resulted surface is a hyperboloid, since one of the radii is NaN
     std::cout << "Identified parameters:\n";
     identified_parameters.print();
 
