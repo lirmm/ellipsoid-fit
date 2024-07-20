@@ -23,7 +23,7 @@ namespace eigenOrder {
  * Lastly, the two input parameters are overwrote with the configuration which possesses 
  * the smallest rotational angle deviated from the ref. frame.
  * 
- * @param  eval 3D vector containing eigenvalues
+ * @param  eval 3D vector containing eigenvalues 
  * @param  evec_column 3x3 Matrix containing eigenvectors arranged in column vectors
  * 
  * @note The order of eigenvectors (column) in `evec_column` is the same as the eigenvalues 
