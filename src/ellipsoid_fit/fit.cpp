@@ -206,6 +206,11 @@ Parameters fit(const Eigen::Matrix<double, Eigen::Dynamic, 3>& data,
         *evec_column_p = evec_column;
     }
 
+    // get the coefficients of the algebraic form
+    if (coefficients != nullptr) {
+        *coefficients = v;
+    }
+
     return params;
 }
 
