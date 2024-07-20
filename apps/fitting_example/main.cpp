@@ -1,21 +1,3 @@
-/*      File: main.cpp
-*       This file is part of the program ellipsoid-fit
-*       Program description : Ellipsoid fitting in C++ using Eigen. Widely inspired by https://www.mathworks.com/matlabcentral/fileexchange/24693-ellipsoid-fit
-*       Copyright (C) 2018-2021 -  Benjamin Navarro (LIRMM) CK-Explorer (). All Right reserved.
-*
-*       This software is free software: you can redistribute it and/or modify
-*       it under the terms of the LGPL license as published by
-*       the Free Software Foundation, either version 3
-*       of the License, or (at your option) any later version.
-*       This software is distributed in the hope that it will be useful,
-*       but WITHOUT ANY WARRANTY without even the implied warranty of
-*       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-*       LGPL License for more details.
-*
-*       You should have received a copy of the GNU Lesser General Public License version 3 and the
-*       General Public License version 3 along with this program.
-*       If not, see <http://www.gnu.org/licenses/>.
-*/
 #include <ellipsoid/fit.h>
 #include <ellipsoid/generate.h>
 
@@ -32,13 +14,36 @@ int main(int argc, char const* argv[]) {
 
     auto points = ellipsoid::generate(parameters, 10000);
 
+    Eigen::Matrix<double, 10, 1> coefficients; // 10 coefficients
+    Eigen::Vector3d eval;   // eigenvalues
+    Eigen::Matrix3d evec_column;    // eigenvectors in column
+
+    // There are 4 function overloadings can be used, please refer to ellipsoid/fit.h
     auto identified_parameters =
-        ellipsoid::fit(points, ellipsoid::EllipsoidType::Arbitrary);
+        ellipsoid::fit(points, &coefficients, &eval, &evec_column, 
+            ellipsoid::EllipsoidType::Arbitrary);
 
     std::cout << "Parameters used for generation:\n";
     parameters.print();
     std::cout << "Identified parameters:\n";
     identified_parameters.print();
+
+    std::cout << "\n\tEigenvalue: ";
+    std::cout << eval.transpose() << "\n";
+
+    std::cout << "\tEigenvectors:\n";
+    for (int i = 0; i < 3; ++i) {
+        std::cout << "\t\t(" << i + 1 << ")-> " << evec_column.col(i).transpose() << "\n";
+    }
+
+    std::cout << "\n\tEllipsoid algebraic eqn.:\n"
+        << "\t\t  Ax^2 + By^2 + Cz^2 \n"
+        << "\t\t+ 2Dxy + 2Exz + 2Fyz \n"
+        << "\t\t+ 2Gx  + 2Hy  + 2Iz  + J = 0 \n\n";
+
+    for (int i = 0; i < coefficients.size(); ++i) {
+        std::cout << "\t\t" << static_cast<char>('A' + i) << " = " << coefficients(i) << '\n';
+    }
 
     return 0;
 }
