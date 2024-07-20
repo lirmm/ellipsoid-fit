@@ -13,7 +13,7 @@ PID_Package(
 			PUBLIC_ADDRESS	https://gite.lirmm.fr/rpc/math/ellipsoid-fit.git
 			ADDRESS git@github.com:BenjaminNavarro/ellipsoid-fit.git
 
-			YEAR 			2018-2021
+			YEAR 			2018-2024
 			LICENSE 		GNULGPL
 			README			README.md
 			DESCRIPTION 	"Ellipsoid fitting in C++ using Eigen. Widely inspired by https://www.mathworks.com/matlabcentral/fileexchange/24693-ellipsoid-fit"
