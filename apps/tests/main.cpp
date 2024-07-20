@@ -21,7 +21,7 @@
 #include <iostream>
 
 int main() {
-
+    // An example of incomplete coverage of the surface points in the input data.
     Eigen::Matrix<double, 100, 3> points;
     double a = 3, b = 1, c = 2;
     auto s = Eigen::Matrix<double, 100, 1>::LinSpaced(0, M_PI);

@@ -7,6 +7,7 @@
 int main(int argc, char const* argv[]) {
     auto type_name = std::string(argv[1]);
     const double tol = 1e-2;
+    std::srand(time(nullptr));
 
     for (size_t i = 0; i < 1000; ++i) {
         ellipsoid::Parameters parameters;
