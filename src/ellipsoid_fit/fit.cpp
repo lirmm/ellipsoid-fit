@@ -207,8 +207,8 @@ Parameters fit(const Eigen::Matrix<double, Eigen::Dynamic, 3>& data,
     }
 
     // get the coefficients of the algebraic form
-    if (coefficients != nullptr) {
-        *coefficients = v;
+    if (coefficients_p != nullptr) {
+        *coefficients_p = v;
     }
 
     return params;
