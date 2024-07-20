@@ -31,6 +31,7 @@ int main() {
     auto identified_parameters =
         ellipsoid::fit(points, ellipsoid::EllipsoidType::Arbitrary);
 
+    // Resulted surface is a hyperboloid, since one of the radii is NaN
     std::cout << "Identified parameters:\n";
     identified_parameters.print();
 
